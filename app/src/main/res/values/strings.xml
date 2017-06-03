@@ -1,4 +1,12 @@
 <resources>
-    <string name="app_name">app</string>
+    <string name="app_name">Luppa</string>
     <string name="action_settings">settings</string>
+
+
+    <string name="intro_1_title">Titulo 1</string>
+    <string name="intro_1_desc">Descricao 1</string>
+    <string name="intro_2_title">Titulo 2</string>
+    <string name="intro_2_desc">Descricao 2</string>
+    <string name="intro_3_title">Titulo 3</string>
+    <string name="intro_3_desc">Descricao 3</string>
 </resources>

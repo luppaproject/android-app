@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="text_color_default">#CCCCCC</color>
+
+    <color name="introColor1">#ff7a43</color>
+    <color name="introColor2">#96ADC8</color>
+    <color name="introColor3">#449DD1</color>
 </resources>

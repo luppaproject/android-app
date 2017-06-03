@@ -12,6 +12,10 @@ import com.project.hackathon.camara.app.model.Suspected;
 
 import java.util.ArrayList;
 
+/**
+ * Created by matheuscatossi on 6/3/17.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
 
