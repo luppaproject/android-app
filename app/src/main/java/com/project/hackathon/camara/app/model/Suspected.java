@@ -12,6 +12,7 @@ public class Suspected {
     int icon_score;
     String type;
     String name;
+    int vote;
 
     public Suspected(int id, int icon, int score, int icon_score, String type, String name) {
         this.id = id;
@@ -30,8 +31,21 @@ public class Suspected {
         this.name = name;
     }
 
+    public Suspected(int icon, int vote) {
+        this.id = id;
+        this.vote = vote;
+    }
+
     public Suspected(){
 
+    }
+
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
     }
 
     public int getId() {

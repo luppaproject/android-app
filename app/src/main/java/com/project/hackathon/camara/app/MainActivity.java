@@ -2,6 +2,8 @@ package com.project.hackathon.camara.app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,17 +51,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        ListView listViewSuspected;
-        listViewSuspected = (ListView) findViewById(R.id.listSuspected);
 
-        ArrayList<Suspected> suspecteds = new ArrayList<Suspected>();
+        RecyclerView recyclerView;
+        recyclerView = (RecyclerView) findViewById(R.id.listSuspected);
+
+
+        ArrayList<Suspected> suspecteds;
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
+        recyclerView.setLayoutManager(mLayoutManager);
+        suspecteds = new ArrayList<>();
+
         suspecteds.add(new Suspected(1,1,1,1,"XX","XX"));
-        suspecteds.add(new Suspected(1,1,1,1,"XX","XX"));
-        suspecteds.add(new Suspected(1,1,1,1,"XX","XX"));
+        suspecteds.add(new Suspected(2,1,1,1,"XX","XX"));
+        suspecteds.add(new Suspected(3,1,1,1,"XX","XX"));
 
         SuspectedCustomAdapter rankingCustomAdapter;
-        rankingCustomAdapter = new SuspectedCustomAdapter(suspecteds, this);
+        rankingCustomAdapter = new SuspectedCustomAdapter(this, suspecteds);
 
-        listViewSuspected.setAdapter(rankingCustomAdapter);
+        recyclerView.setAdapter(rankingCustomAdapter);
     }
 }

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Luppa</string>
     <string name="action_settings">settings</string>
-
+    <string name="text_btn_vote_default">Votar</string>
+    <string name="text_btn_not_vote">Deixar de votar</string>
 
     <string name="intro_1_title">Titulo 1</string>
     <string name="intro_1_desc">Descricao 1</string>

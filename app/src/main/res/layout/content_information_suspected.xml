@@ -9,4 +9,12 @@
     tools:context="com.project.hackathon.camara.app.InformationSuspectedActivity"
     tools:showIn="@layout/activity_information_suspected">
 
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_vote"
+        android:text="@string/text_btn_vote_default"
+        />
+
 </android.support.constraint.ConstraintLayout>
