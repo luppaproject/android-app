@@ -1,5 +1,6 @@
 package com.project.hackathon.camara.app;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,13 +13,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.hackathon.camara.app.adapter.ProductSuspectedCustomAdapter;
 import com.project.hackathon.camara.app.adapter.SuspectedCustomAdapter;
 import com.project.hackathon.camara.app.handler.DatabaseHandler;
 import com.project.hackathon.camara.app.model.InformationSuspected;
 import com.project.hackathon.camara.app.model.Product;
+import com.project.hackathon.camara.app.model.RequisitionVoted;
 import com.project.hackathon.camara.app.model.Suspected;
+import com.project.hackathon.camara.app.model.Voted;
 import com.project.hackathon.camara.app.webservice.APIClient;
 import com.project.hackathon.camara.app.webservice.APIInterface;
 
@@ -54,6 +58,10 @@ public class InformationSuspectedActivity extends AppCompatActivity {
     private TextView tv_link_avaaz;
     private TextView tv_count;
     private TextView tv_bidding_url;
+
+    private Call<Voted> callVoted;
+
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,13 +174,38 @@ public class InformationSuspectedActivity extends AppCompatActivity {
                     btn_vote.setText(R.string.text_btn_not_vote);
                     db.addSuspected(suspected);
                 }
+
+                progress = ProgressDialog.show(InformationSuspectedActivity.this, "Carregando", "Enviando informações", true);
+
+                APIInterface apiService = APIClient.getService().create(APIInterface.class);
+                callVoted = apiService.postVoted(id, new RequisitionVoted("Matheus Catossi", "matheuscatossi@gmail.com", "08465120", "BR"));
+
+                callVoted.enqueue(new Callback<Voted>() {
+
+                    @Override
+                    public void onResponse(Call<Voted> call, Response<Voted> response) {
+                        if (response.raw().code() == 200) {
+                            Voted t = response.body();
+
+                            Toast.makeText(InformationSuspectedActivity.this.getBaseContext(), "Votação realizado com sucesso", Toast.LENGTH_SHORT).show();
+                            progress.dismiss();
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Voted> call, Throwable t) {
+                        Log.e("MENSAGEM", t.toString());
+                        progress.dismiss();
+                    }
+
+                });
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-
         Intent i = new Intent(InformationSuspectedActivity.this,MainActivity.class);
         startActivity(i);
         finish();
