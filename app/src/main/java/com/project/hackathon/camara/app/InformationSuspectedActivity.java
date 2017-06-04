@@ -62,6 +62,8 @@ public class InformationSuspectedActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         btn_vote = (Button) findViewById(R.id.btn_vote);
 
         Intent myIntent = getIntent();
@@ -166,5 +168,14 @@ public class InformationSuspectedActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent i = new Intent(InformationSuspectedActivity.this,MainActivity.class);
+        startActivity(i);
+        finish();
+        super.onBackPressed();
     }
 }
