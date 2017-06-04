@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="size_text_default">16dp</dimen>
+    <dimen name="size_text_default">26dp</dimen>
+    <dimen name="size_text_default_subtitle">18dp</dimen>
 </resources>

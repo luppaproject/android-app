@@ -69,9 +69,9 @@ public class SuspectedCustomAdapter extends RecyclerView.Adapter<SuspectedCustom
         final Suspected suspected = suspectedList.get(position);
         holder.tv_name.setText("" + suspected.getName());
         holder.tv_type.setText("" + suspected.getType());
-        holder.tv_score.setText("" + suspected.getScore());
-        holder.iv_icon.setImageResource(R.mipmap.ic_launcher);
-        holder.iv_icon_score.setImageResource(R.mipmap.ic_launcher);
+        holder.tv_score.setText("" + suspected.getScore() + "%");
+        holder.iv_icon.setImageResource(suspected.getIcon());
+        holder.iv_icon_score.setImageResource(suspected.getIcon_score());
 
         holder.ll_line.setOnClickListener(new View.OnClickListener() {
             @Override

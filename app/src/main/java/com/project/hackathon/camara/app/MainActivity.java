@@ -61,9 +61,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         suspecteds = new ArrayList<>();
 
-        suspecteds.add(new Suspected(1,1,1,1,"XX","XX"));
-        suspecteds.add(new Suspected(2,1,1,1,"XX","XX"));
-        suspecteds.add(new Suspected(3,1,1,1,"XX","XX"));
+        suspecteds.add(new Suspected(1,R.drawable.computer,90,R.drawable.up,"Computer","Computer"));
+        suspecteds.add(new Suspected(2,R.drawable.mobile,87,R.drawable.up,"Mobile","Mobile"));
+        suspecteds.add(new Suspected(3,R.drawable.computer,80,R.drawable.up,"Computer","Computer"));
+        suspecteds.add(new Suspected(4,R.drawable.mobile,72,R.drawable.up,"Mobile","Mobile"));
+        suspecteds.add(new Suspected(5,R.drawable.pencil,65,R.drawable.up,"Pencil","Pencil"));
+        suspecteds.add(new Suspected(6,R.drawable.computer,60,R.drawable.up,"Computer","Computer"));
+        suspecteds.add(new Suspected(7,R.drawable.mobile,55,R.drawable.up,"Mobile","Mobile"));
+        suspecteds.add(new Suspected(8,R.drawable.pencil,35,R.drawable.down,"Pencil","Pencil"));
+        suspecteds.add(new Suspected(9,R.drawable.computer,22,R.drawable.down,"Computer","Computer"));
 
         SuspectedCustomAdapter rankingCustomAdapter;
         rankingCustomAdapter = new SuspectedCustomAdapter(this, suspecteds);
