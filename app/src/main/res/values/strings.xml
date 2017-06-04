@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">luppa</string>
     <string name="action_settings">settings</string>
-    <string name="text_btn_vote_default">Votar</string>
-    <string name="text_btn_not_vote">Deixar de votar</string>
+    <string name="text_btn_vote_default">Apoiar</string>
+    <string name="text_btn_not_vote">Não apoiar</string>
     <string name="text_info">Informações</string>
 
     <string name="intro_1_title">Dinheiro</string>
@@ -11,4 +11,10 @@
     <string name="intro_2_desc">Você e seus amigos podem mudar o Brasil.</string>
     <string name="intro_3_title">luppa</string>
     <string name="intro_3_desc">A plataforma que oferece todas as suspeitas de irregularidades e quem decide o futuro disso é você!</string>
+
+    <string name="filter_1">Filtro por Entidade</string>
+    <string name="filter_2">Filtro por Cidade</string>
+    <string name="filter_3">Filtro por porcentagem</string>
+    <string name="filter_4">Filtro por Produto</string>
+
 </resources>

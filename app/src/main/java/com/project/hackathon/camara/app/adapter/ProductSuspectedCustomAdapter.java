@@ -56,8 +56,8 @@ public class ProductSuspectedCustomAdapter extends RecyclerView.Adapter<ProductS
 
         final Suspected suspected = suspectedList.get(position);
         holder.tv_name.setText("" + suspected.getName());
-        holder.tv_value_original.setText("" + suspected.getValue_original());
-        holder.tv_value_suspected.setText("" + suspected.getValue_suspected());
+        holder.tv_value_original.setText("M: R$" + suspected.getValue_original());
+        holder.tv_value_suspected.setText("P: R$" + suspected.getValue_suspected());
 
     }
 

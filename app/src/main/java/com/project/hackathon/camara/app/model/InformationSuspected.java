@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class InformationSuspected {
 
     ArrayList<Product> products;
+    String entity;
     String registerAt;
     String orderNumber;
     String manufacturer;
@@ -30,7 +31,7 @@ public class InformationSuspected {
 
     }
 
-    public InformationSuspected(ArrayList<Product> products, String registerAt, String orderNumber, String manufacturer, String productAlias, String type, String name, String id, String orderType, String biddingUrl, String createdAt, float totalPrice, float crawlerPrice, int quantity, int score, int numberVotes, String avaazUrl){
+    public InformationSuspected(ArrayList<Product> products, String registerAt, String orderNumber, String manufacturer, String productAlias, String type, String name, String id, String orderType, String biddingUrl, String createdAt, float totalPrice, float crawlerPrice, int quantity, int score, int numberVotes, String avaazUrl, String entity){
         this.products = products;
         this.registerAt = registerAt;
         this.orderNumber = orderNumber;
@@ -48,6 +49,7 @@ public class InformationSuspected {
         this.score = score;
         this.numberVotes = numberVotes;
         this.avaazUrl = avaazUrl;
+        this.entity = entity;
     }
 
     public String getAvaazUrl() {
@@ -56,6 +58,14 @@ public class InformationSuspected {
 
     public void setAvaazUrl(String avaazUrl) {
         this.avaazUrl = avaazUrl;
+    }
+
+    public String getEntity() {
+        return entity;
+    }
+
+    public void setEntity(String entity) {
+        this.entity = entity;
     }
 
     public ArrayList<Product> getProducts() {

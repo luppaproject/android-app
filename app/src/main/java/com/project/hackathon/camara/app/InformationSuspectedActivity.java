@@ -58,6 +58,7 @@ public class InformationSuspectedActivity extends AppCompatActivity {
     private TextView tv_link_avaaz;
     private TextView tv_count;
     private TextView tv_bidding_url;
+    private TextView tv_entity;
 
     private Call<Voted> callVoted;
 
@@ -70,7 +71,8 @@ public class InformationSuspectedActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        progress = ProgressDialog.show(InformationSuspectedActivity.this, "Carregando", "Enviando informações", true);
+
 
         btn_vote = (Button) findViewById(R.id.btn_vote);
 
@@ -100,6 +102,7 @@ public class InformationSuspectedActivity extends AppCompatActivity {
         tv_link_avaaz = (TextView) findViewById(R.id.tv_link_avaaz);
         tv_count = (TextView) findViewById(R.id.tv_count);
         tv_bidding_url = (TextView) findViewById(R.id.tv_bidding_url);
+        tv_entity = (TextView) findViewById(R.id.tv_entity);
 
         recyclerView = (RecyclerView) findViewById(R.id.listProductSuspected);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
@@ -131,6 +134,7 @@ public class InformationSuspectedActivity extends AppCompatActivity {
                     tv_link_avaaz.setText("" + informationSuspected.getAvaazUrl());
                     tv_bidding_url.setText("" + informationSuspected.getBiddingUrl());
                     tv_count.setText("Quantidade de votos: " + informationSuspected.getNumberVotes());
+                    tv_entity.setText("" + informationSuspected.getEntity());
                 }
             }
 
@@ -202,13 +206,7 @@ public class InformationSuspectedActivity extends AppCompatActivity {
                 });
             }
         });
-    }
 
-    @Override
-    public void onBackPressed() {
-        Intent i = new Intent(InformationSuspectedActivity.this,MainActivity.class);
-        startActivity(i);
-        finish();
-        super.onBackPressed();
+        progress.dismiss();
     }
 }

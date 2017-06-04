@@ -4,16 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="10dp"
-    android:weightSum="5">
-
-    <ImageView
-        android:id="@+id/iv_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:src="@drawable/value" />
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/tv_name"
@@ -45,6 +36,14 @@
         android:gravity="left"
         android:textColor="@color/text_color_default"
         android:textSize="@dimen/size_text_default_subtitle_sub" />
+
+    <ImageView
+        android:layout_marginLeft="15dp"
+        android:id="@+id/iv_internet"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:src="@drawable/internet" />
 
 
 </LinearLayout>
