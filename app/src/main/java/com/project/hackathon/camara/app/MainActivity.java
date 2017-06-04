@@ -61,12 +61,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    RecyclerView recyclerView;
-    ArrayList<Suspected> suspecteds;
-    APIInterface apiService;
-    Call<List<Suspected>> callSuspected;
-    static final ScheduledThreadPoolExecutor EXECUTOR = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(2);
-    static ScheduledFuture<?> sSuspected;
+    private RecyclerView recyclerView;
+    private ArrayList<Suspected> suspecteds;
+    private APIInterface apiService;
+    private Call<List<Suspected>> callSuspected;
 
     @Override
     protected void onResume() {

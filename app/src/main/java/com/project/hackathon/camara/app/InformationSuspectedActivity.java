@@ -1,6 +1,8 @@
 package com.project.hackathon.camara.app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,13 +11,25 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.project.hackathon.camara.app.adapter.ProductSuspectedCustomAdapter;
 import com.project.hackathon.camara.app.adapter.SuspectedCustomAdapter;
 import com.project.hackathon.camara.app.handler.DatabaseHandler;
+import com.project.hackathon.camara.app.model.InformationSuspected;
+import com.project.hackathon.camara.app.model.Product;
 import com.project.hackathon.camara.app.model.Suspected;
+import com.project.hackathon.camara.app.webservice.APIClient;
+import com.project.hackathon.camara.app.webservice.APIInterface;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by matheuscatossi on 6/3/17.
@@ -27,6 +41,20 @@ public class InformationSuspectedActivity extends AppCompatActivity {
     private DatabaseHandler db;
     private Button btn_vote;
     private Suspected suspected;
+
+    private RecyclerView recyclerView;
+    private ArrayList<InformationSuspected> informationSuspecteds;
+    ArrayList<Suspected> productSuspecteds;
+    private APIInterface apiService;
+    private Call<InformationSuspected> callInformationSuspected;
+    private InformationSuspected informationSuspected;
+
+    private TextView tv_name;
+    private TextView tv_desc;
+    private TextView tv_link_avaaz;
+    private TextView tv_count;
+    private TextView tv_bidding_url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,30 +85,66 @@ public class InformationSuspectedActivity extends AppCompatActivity {
             }
         }
 
-        RecyclerView recyclerView;
-        recyclerView = (RecyclerView) findViewById(R.id.listProductSuspected);
+        tv_name = (TextView) findViewById(R.id.tv_name);
+        tv_desc = (TextView) findViewById(R.id.tv_desc);
+        tv_link_avaaz = (TextView) findViewById(R.id.tv_link_avaaz);
+        tv_count = (TextView) findViewById(R.id.tv_count);
+        tv_bidding_url = (TextView) findViewById(R.id.tv_bidding_url);
 
-        ArrayList<Suspected> suspecteds;
+        recyclerView = (RecyclerView) findViewById(R.id.listProductSuspected);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
-        suspecteds = new ArrayList<>();
+        productSuspecteds = new ArrayList<>();
 
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
-        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        apiService = APIClient.getService().create(APIInterface.class);
+        callInformationSuspected = apiService.getBiddingById(id);
+        informationSuspecteds = new ArrayList<>();
+
+        callInformationSuspected.enqueue(new Callback<InformationSuspected>() {
+            @Override
+            public void onResponse(Call<InformationSuspected> call, Response<InformationSuspected> response) {
+                if (response.raw().code() == 200) {
+                    informationSuspected = response.body();
 
 
-        ProductSuspectedCustomAdapter rankingCustomAdapter;
-        rankingCustomAdapter = new ProductSuspectedCustomAdapter(this, suspecteds);
+                    for (Product product : informationSuspected.getProducts()) {
+                        productSuspecteds.add(new Suspected(product.getProductName(), "" + product.getTotalCrawlerPrice(), "" +product.getTotalPrice()));
+                    }
 
-        recyclerView.setAdapter(rankingCustomAdapter);
+                    ProductSuspectedCustomAdapter rankingCustomAdapter;
+                    rankingCustomAdapter = new ProductSuspectedCustomAdapter(InformationSuspectedActivity.this, productSuspecteds);
 
+                    recyclerView.setAdapter(rankingCustomAdapter);
+
+                    tv_name.setText("" + informationSuspected.getProductAlias());
+                    tv_desc.setText("" + informationSuspected.getManufacturer());
+                    tv_link_avaaz.setText("" + informationSuspected.getAvaazUrl());
+                    tv_bidding_url.setText("" + informationSuspected.getBiddingUrl());
+                    tv_count.setText("Quantidade de votos: " + informationSuspected.getNumberVotes());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<InformationSuspected> call, Throwable t) {
+                Log.e("GETBIDDINGBYID", t.toString());
+            }
+        });
+
+        tv_bidding_url.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(tv_bidding_url.getText().toString()));
+                startActivity(intent);
+            }
+        });
+
+        tv_link_avaaz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(tv_link_avaaz.getText().toString()));
+                startActivity(intent);
+            }
+        });
 
         btn_vote.setOnClickListener(new View.OnClickListener() {
             @Override

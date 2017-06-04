@@ -22,6 +22,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:gravity="left"
+        android:lines="1"
         android:textColor="@color/text_color_default"
         android:textSize="@dimen/size_text_default_subtitle" />
 

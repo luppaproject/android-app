@@ -31,8 +31,8 @@
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/iv_icon"
                 android:layout_margin="10dp"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:src="@drawable/computer" />
             </LinearLayout>
 
@@ -44,30 +44,39 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:textSize="24dp"
-                android:textColor="@color/text_color_default"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Compra da escola SP"/>
+                android:orientation="horizontal">
 
-            <TextView
-                android:gravity="center_horizontal"
-                android:textSize="20dp"
-                android:textColor="@color/text_color_default_subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Secretária de Educacao"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <TextView
-                android:gravity="center_horizontal"
-                android:textColor="@color/text_color_default_subtitle"
-                android:textSize="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Compras feitas para beneficiar os alunos no segundo semestre de 2017."/>
+                    <TextView
+                        android:lines="1"
+                        android:id="@+id/tv_name"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:textSize="24dp"
+                        android:textColor="@color/text_color_default"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Compra da escola SP"/>
+
+                    <TextView
+                        android:id="@+id/tv_desc"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/text_color_default_subtitle"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Compras feitas para beneficiar os alunos no segundo semestre de 2017."/>
+                </LinearLayout>
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </LinearLayout>
@@ -82,22 +91,44 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listProductSuspected"
         android:layout_width="match_parent"
-        android:layout_height="180dp" />
+        android:layout_height="150dp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/text_color_default_subtitle"/>
 
-
     <TextView
-        android:layout_margin="10dp"
+        android:lines="1"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/tv_link_avaaz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Link AVAAZ"/>
 
+    <TextView
+        android:layout_margin="5dp"
+        android:lines="1"
+        android:id="@+id/tv_bidding_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Link AVAAZ"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:layout_margin="5dp"
+        android:textColor="@color/colorPrimary"
+        android:lines="1"
+        android:id="@+id/tv_count"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textSize="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"/>
 
     <Button
+        android:layout_marginTop="10dp"
         android:padding="20dp"
         android:background="@color/colorPrimary"
         android:textColor="#FFFFFF"

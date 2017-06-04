@@ -71,7 +71,12 @@ public class SuspectedCustomAdapter extends RecyclerView.Adapter<SuspectedCustom
         holder.tv_type.setText("" + suspected.getType());
         holder.tv_score.setText("" + suspected.getScore() + "%");
         holder.iv_icon.setImageResource(R.drawable.computer);
-        holder.iv_icon_score.setImageResource(R.drawable.up);
+
+        if(suspected.getScore() > 0) {
+            holder.iv_icon_score.setImageResource(R.drawable.up);
+        } else {
+            holder.iv_icon_score.setImageResource(R.drawable.down);
+        }
 
         holder.ll_line.setOnClickListener(new View.OnClickListener() {
             @Override

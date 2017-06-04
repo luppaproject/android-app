@@ -2,6 +2,7 @@ package com.project.hackathon.camara.app.webservice;
 
 import android.provider.SyncStateContract;
 
+import com.project.hackathon.camara.app.model.InformationSuspected;
 import com.project.hackathon.camara.app.model.Suspected;
 import com.project.hackathon.camara.app.utils.Constants;
 
@@ -26,8 +27,8 @@ public interface APIInterface {
 //    @POST(Constants.POST_MEMBROS_UPDATE)
 //    Call<Suspected> postMembrosUpdate(@Path("id") String id, @Body Membro membro);
 
-//    @GET(Constants.GET_REUNIOES_BY_ID)
-//    Call<Suspected> getReunioesByID(@Path("id") String id);
+    @GET(Constants.BIDDING_BY_ID)
+    Call<InformationSuspected> getBiddingById(@Path("id") String id);
 
 
 }
