@@ -5,14 +5,27 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.project.hackathon.camara.app.adapter.SuspectedCustomAdapter;
 import com.project.hackathon.camara.app.model.Suspected;
+import com.project.hackathon.camara.app.webservice.APIClient;
+import com.project.hackathon.camara.app.webservice.APIInterface;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by matheuscatossi on 6/3/17.
@@ -47,31 +60,52 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    RecyclerView recyclerView;
+    ArrayList<Suspected> suspecteds;
+    APIInterface apiService;
+    Call<List<Suspected>> callSuspected;
+    static final ScheduledThreadPoolExecutor EXECUTOR = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(2);
+    static ScheduledFuture<?> sSuspected;
+
     @Override
     protected void onResume() {
         super.onResume();
 
-        RecyclerView recyclerView;
         recyclerView = (RecyclerView) findViewById(R.id.listSuspected);
-
-        ArrayList<Suspected> suspecteds;
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
         suspecteds = new ArrayList<>();
 
-        suspecteds.add(new Suspected(1,R.drawable.computer,90,R.drawable.up,"Computer","Computer"));
-        suspecteds.add(new Suspected(2,R.drawable.mobile,87,R.drawable.up,"Mobile","Mobile"));
-        suspecteds.add(new Suspected(3,R.drawable.computer,80,R.drawable.up,"Computer","Computer"));
-        suspecteds.add(new Suspected(4,R.drawable.mobile,72,R.drawable.up,"Mobile","Mobile"));
-        suspecteds.add(new Suspected(5,R.drawable.pencil,65,R.drawable.up,"Pencil","Pencil"));
-        suspecteds.add(new Suspected(6,R.drawable.computer,60,R.drawable.up,"Computer","Computer"));
-        suspecteds.add(new Suspected(7,R.drawable.mobile,55,R.drawable.up,"Mobile","Mobile"));
-        suspecteds.add(new Suspected(8,R.drawable.pencil,35,R.drawable.down,"Pencil","Pencil"));
-        suspecteds.add(new Suspected(9,R.drawable.computer,22,R.drawable.down,"Computer","Computer"));
+        apiService = APIClient.getService().create(APIInterface.class);
+        callSuspected = apiService.getAllSuspected();
+        suspecteds = new ArrayList<>();
 
-        SuspectedCustomAdapter rankingCustomAdapter;
-        rankingCustomAdapter = new SuspectedCustomAdapter(this, suspecteds);
+        sSuspected = EXECUTOR.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                callSuspected.enqueue(new Callback<List<Suspected>>() {
+                    @Override
+                    public void onResponse(Call<List<Suspected>> call, Response<List<Suspected>> response) {
+                        if (response.raw().code() == 200) {
 
-        recyclerView.setAdapter(rankingCustomAdapter);
+                            for (Suspected suspected : response.body()) {
+                                suspecteds.add(new Suspected(suspected.getId(), suspected.getName(), suspected.getType(), suspected.getScore()));
+                            }
+
+                            SuspectedCustomAdapter rankingCustomAdapter;
+                            rankingCustomAdapter = new SuspectedCustomAdapter(MainActivity.this, suspecteds);
+
+                            recyclerView.setAdapter(rankingCustomAdapter);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Suspected>> call, Throwable t) {
+                        Log.e("GETALLBIDDING", t.toString());
+                    }
+                });
+            }
+        }, 0, 600, TimeUnit.SECONDS);
     }
 }

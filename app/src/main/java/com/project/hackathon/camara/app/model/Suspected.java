@@ -25,6 +25,13 @@ public class Suspected {
         this.name = name;
     }
 
+    public Suspected(int id, String name, String type, int score) {
+        this.id = id;
+        this.score = score;
+        this.type = type;
+        this.name = name;
+    }
+
     public Suspected(int icon, int score, int icon_score, String type, String name) {
         this.icon = icon;
         this.score = score;
