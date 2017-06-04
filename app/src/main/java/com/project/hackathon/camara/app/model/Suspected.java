@@ -31,7 +31,7 @@ public class Suspected {
         this.name = name;
     }
 
-    public Suspected(int icon, int vote) {
+    public Suspected(int id, int vote) {
         this.id = id;
         this.vote = vote;
     }

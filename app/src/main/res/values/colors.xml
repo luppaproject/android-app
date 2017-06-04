@@ -6,7 +6,7 @@
 
     <color name="text_color_default">#CCCCCC</color>
 
-    <color name="introColor1">#ff7a43</color>
-    <color name="introColor2">#96ADC8</color>
-    <color name="introColor3">#449DD1</color>
+    <color name="introColor1">#47c8ff</color>
+    <color name="introColor2">#f494af</color>
+    <color name="introColor3">#dfe27e</color>
 </resources>

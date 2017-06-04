@@ -10,6 +10,8 @@ import android.widget.Button;
 import com.project.hackathon.camara.app.handler.DatabaseHandler;
 import com.project.hackathon.camara.app.model.Suspected;
 
+import java.util.ArrayList;
+
 /**
  * Created by matheuscatossi on 6/3/17.
  */
@@ -32,12 +34,11 @@ public class InformationSuspectedActivity extends AppCompatActivity {
 
         db = new DatabaseHandler(this);
 
-
         suspected = null;
 
         if (db.getSuspectedsCount() != 0) {
             suspected = db.getSuspected(id);
-            Log.d("SUSPECTED",""+ suspected.getVote());
+
             if (suspected == null) {
                 btn_vote.setText(R.string.text_btn_vote_default);
             } else {
@@ -62,7 +63,6 @@ public class InformationSuspectedActivity extends AppCompatActivity {
                     }
 
                     db.updateSuspected(suspected);
-
                 } else {
                     suspected = new Suspected(id, 1);
                     btn_vote.setText(R.string.text_btn_not_vote);

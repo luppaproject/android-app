@@ -28,9 +28,9 @@ public class IntroActivity extends AppIntro {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
 
-        addSlide(AppIntroFragment.newInstance(getString(R.string.intro_1_title), getString(R.string.intro_1_desc), R.mipmap.ic_launcher, getResources().getColor(R.color.introColor1)));
-        addSlide(AppIntroFragment.newInstance(getString(R.string.intro_2_title), getString(R.string.intro_2_desc), R.mipmap.ic_launcher, getResources().getColor(R.color.introColor2)));
-        addSlide(AppIntroFragment.newInstance(getString(R.string.intro_3_title), getString(R.string.intro_3_desc), R.mipmap.ic_launcher, getResources().getColor(R.color.introColor3)));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.intro_1_title), getString(R.string.intro_1_desc), R.drawable.money, getResources().getColor(R.color.introColor1)));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.intro_2_title), getString(R.string.intro_2_desc), R.drawable.people, getResources().getColor(R.color.introColor2)));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.intro_3_title), getString(R.string.intro_3_desc), R.drawable.logo, getResources().getColor(R.color.introColor3)));
 
         // OPTIONAL METHODS
         // Override bar/separator color.

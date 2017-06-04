@@ -4,10 +4,10 @@
     <string name="text_btn_vote_default">Votar</string>
     <string name="text_btn_not_vote">Deixar de votar</string>
 
-    <string name="intro_1_title">Titulo 1</string>
-    <string name="intro_1_desc">Descricao 1</string>
-    <string name="intro_2_title">Titulo 2</string>
-    <string name="intro_2_desc">Descricao 2</string>
-    <string name="intro_3_title">Titulo 3</string>
-    <string name="intro_3_desc">Descricao 3</string>
+    <string name="intro_1_title">Dinheiro</string>
+    <string name="intro_1_desc">Você acha que seu dinheiro está sendo gasto pelos politícos de forma certa?</string>
+    <string name="intro_2_title">Ciclo</string>
+    <string name="intro_2_desc">Você e seus amigos podem mudar o Brasil.</string>
+    <string name="intro_3_title">luppa</string>
+    <string name="intro_3_desc">A plataforma que oferece todas as suspeitas de irregularidades e quem decide o futuro disso é você!</string>
 </resources>

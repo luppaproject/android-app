@@ -32,8 +32,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_SUSPECTED + "("
-                + KEY_ID + " INTEGER PRIMARY KEY,"
-                + KEY_VOTE + " INTEGER" + ")";
+                + KEY_ID + " TEXT PRIMARY KEY,"
+                + KEY_VOTE + " TEXT" + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
@@ -47,7 +47,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_VOTE, suspected.getVote());
+        values.put(KEY_ID, "" + suspected.getId());
+        values.put(KEY_VOTE, "" + suspected.getVote());
 
         db.insert(TABLE_SUSPECTED, null, values);
         db.close();
@@ -57,7 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_SUSPECTED, new String[]{KEY_ID,
-                        KEY_VOTE}, KEY_ID + "=?",
+                        KEY_VOTE}, KEY_ID + " = ? ",
                 new String[]{String.valueOf(id)}, null, null, null, null);
 
         Suspected suspected = null;
@@ -66,7 +67,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
             suspected = new Suspected(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)));
         }
-
 
         return suspected;
     }
@@ -93,7 +93,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public int updateSuspected(Suspected suspected) {
         SQLiteDatabase db = this.getWritableDatabase();
-
 
         ContentValues values = new ContentValues();
         values.put(KEY_VOTE, "" + suspected.getVote());
