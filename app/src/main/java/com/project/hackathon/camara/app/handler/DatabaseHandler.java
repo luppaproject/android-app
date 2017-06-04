@@ -54,18 +54,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Suspected getSuspected(int id) {
+    public Suspected getSuspected(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_SUSPECTED, new String[]{KEY_ID,
                         KEY_VOTE}, KEY_ID + " = ? ",
-                new String[]{String.valueOf(id)}, null, null, null, null);
+                new String[]{id}, null, null, null, null);
 
         Suspected suspected = null;
 
         if (cursor != null && cursor.getCount() != 0) {
             cursor.moveToFirst();
-            suspected = new Suspected(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)));
+            suspected = new Suspected(cursor.getString(0), Integer.parseInt(cursor.getString(1)));
         }
 
         return suspected;
@@ -82,7 +82,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Suspected suspected = new Suspected();
-                suspected.setId(Integer.parseInt(cursor.getString(0)));
+                suspected.setId(cursor.getString(0));
                 suspected.setVote(Integer.parseInt(cursor.getString(1)));
                 suspectedList.add(suspected);
             } while (cursor.moveToNext());

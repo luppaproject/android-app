@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class InformationSuspectedActivity extends AppCompatActivity {
 
-    private int id;
+    private String id;
     private DatabaseHandler db;
     private Button btn_vote;
     private Suspected suspected;
@@ -37,7 +37,7 @@ public class InformationSuspectedActivity extends AppCompatActivity {
         btn_vote = (Button) findViewById(R.id.btn_vote);
 
         Intent myIntent = getIntent();
-        id = Integer.parseInt(myIntent.getStringExtra("id"));
+        id = myIntent.getStringExtra("id");
 
         db = new DatabaseHandler(this);
 
@@ -96,7 +96,7 @@ public class InformationSuspectedActivity extends AppCompatActivity {
 
                     db.updateSuspected(suspected);
                 } else {
-                    suspected = new Suspected(id, 1);
+                    suspected = new Suspected(""+ id, 1);
                     btn_vote.setText(R.string.text_btn_not_vote);
                     db.addSuspected(suspected);
                 }

@@ -81,31 +81,26 @@ public class MainActivity extends AppCompatActivity {
         callSuspected = apiService.getAllSuspected();
         suspecteds = new ArrayList<>();
 
-        sSuspected = EXECUTOR.scheduleAtFixedRate(new Runnable() {
+        callSuspected.enqueue(new Callback<List<Suspected>>() {
             @Override
-            public void run() {
-                callSuspected.enqueue(new Callback<List<Suspected>>() {
-                    @Override
-                    public void onResponse(Call<List<Suspected>> call, Response<List<Suspected>> response) {
-                        if (response.raw().code() == 200) {
+            public void onResponse(Call<List<Suspected>> call, Response<List<Suspected>> response) {
+                if (response.raw().code() == 200) {
 
-                            for (Suspected suspected : response.body()) {
-                                suspecteds.add(new Suspected(suspected.getId(), suspected.getName(), suspected.getType(), suspected.getScore()));
-                            }
-
-                            SuspectedCustomAdapter rankingCustomAdapter;
-                            rankingCustomAdapter = new SuspectedCustomAdapter(MainActivity.this, suspecteds);
-
-                            recyclerView.setAdapter(rankingCustomAdapter);
-                        }
+                    for (Suspected suspected : response.body()) {
+                        suspecteds.add(new Suspected(suspected.getId(), suspected.getName(), suspected.getType(), suspected.getScore()));
                     }
 
-                    @Override
-                    public void onFailure(Call<List<Suspected>> call, Throwable t) {
-                        Log.e("GETALLBIDDING", t.toString());
-                    }
-                });
+                    SuspectedCustomAdapter rankingCustomAdapter;
+                    rankingCustomAdapter = new SuspectedCustomAdapter(MainActivity.this, suspecteds);
+
+                    recyclerView.setAdapter(rankingCustomAdapter);
+                }
             }
-        }, 0, 600, TimeUnit.SECONDS);
+
+            @Override
+            public void onFailure(Call<List<Suspected>> call, Throwable t) {
+                Log.e("GETALLBIDDING", t.toString());
+            }
+        });
     }
 }

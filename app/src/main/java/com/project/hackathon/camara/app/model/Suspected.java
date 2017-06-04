@@ -6,17 +6,17 @@ package com.project.hackathon.camara.app.model;
 
 public class Suspected {
 
-    int id;
     int icon;
     int score;
     int icon_score;
     int vote;
+    String id;
     String value_original;
     String value_suspected;
     String type;
     String name;
 
-    public Suspected(int id, int icon, int score, int icon_score, String type, String name) {
+    public Suspected(String id, int icon, int score, int icon_score, String type, String name) {
         this.id = id;
         this.icon = icon;
         this.score = score;
@@ -25,7 +25,7 @@ public class Suspected {
         this.name = name;
     }
 
-    public Suspected(int id, String name, String type, int score) {
+    public Suspected(String id, String name, String type, int score) {
         this.id = id;
         this.score = score;
         this.type = type;
@@ -40,7 +40,7 @@ public class Suspected {
         this.name = name;
     }
 
-    public Suspected(int id, int vote) {
+    public Suspected(String id, int vote) {
         this.id = id;
         this.vote = vote;
     }
@@ -63,11 +63,11 @@ public class Suspected {
         this.vote = vote;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
