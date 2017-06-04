@@ -51,10 +51,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-
         RecyclerView recyclerView;
         recyclerView = (RecyclerView) findViewById(R.id.listSuspected);
-
 
         ArrayList<Suspected> suspecteds;
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);

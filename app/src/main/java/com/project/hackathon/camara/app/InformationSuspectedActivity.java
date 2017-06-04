@@ -3,10 +3,15 @@ package com.project.hackathon.camara.app;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.project.hackathon.camara.app.adapter.ProductSuspectedCustomAdapter;
+import com.project.hackathon.camara.app.adapter.SuspectedCustomAdapter;
 import com.project.hackathon.camara.app.handler.DatabaseHandler;
 import com.project.hackathon.camara.app.model.Suspected;
 
@@ -26,6 +31,8 @@ public class InformationSuspectedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_suspected);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         btn_vote = (Button) findViewById(R.id.btn_vote);
 
@@ -49,6 +56,31 @@ public class InformationSuspectedActivity extends AppCompatActivity {
                 }
             }
         }
+
+        RecyclerView recyclerView;
+        recyclerView = (RecyclerView) findViewById(R.id.listProductSuspected);
+
+        ArrayList<Suspected> suspecteds;
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
+        recyclerView.setLayoutManager(mLayoutManager);
+        suspecteds = new ArrayList<>();
+
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+        suspecteds.add(new Suspected("Computer", "R$2.000,00", "R$5.000,00"));
+
+
+        ProductSuspectedCustomAdapter rankingCustomAdapter;
+        rankingCustomAdapter = new ProductSuspectedCustomAdapter(this, suspecteds);
+
+        recyclerView.setAdapter(rankingCustomAdapter);
+
 
         btn_vote.setOnClickListener(new View.OnClickListener() {
             @Override

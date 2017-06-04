@@ -3,6 +3,7 @@
     <string name="action_settings">settings</string>
     <string name="text_btn_vote_default">Votar</string>
     <string name="text_btn_not_vote">Deixar de votar</string>
+    <string name="text_info">Informações</string>
 
     <string name="intro_1_title">Dinheiro</string>
     <string name="intro_1_desc">Você acha que seu dinheiro está sendo gasto pelos politícos de forma certa?</string>

@@ -10,9 +10,11 @@ public class Suspected {
     int icon;
     int score;
     int icon_score;
+    int vote;
+    String value_original;
+    String value_suspected;
     String type;
     String name;
-    int vote;
 
     public Suspected(int id, int icon, int score, int icon_score, String type, String name) {
         this.id = id;
@@ -34,6 +36,12 @@ public class Suspected {
     public Suspected(int id, int vote) {
         this.id = id;
         this.vote = vote;
+    }
+
+    public Suspected(String name, String value_original, String value_suspected){
+        this.name = name;
+        this.value_original = value_original;
+        this.value_suspected = value_suspected;
     }
 
     public Suspected(){
@@ -94,5 +102,21 @@ public class Suspected {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getValue_original() {
+        return value_original;
+    }
+
+    public void setValue_original(String value_original) {
+        this.value_original = value_original;
+    }
+
+    public String getValue_suspected() {
+        return value_suspected;
+    }
+
+    public void setValue_suspected(String value_suspected) {
+        this.value_suspected = value_suspected;
     }
 }
