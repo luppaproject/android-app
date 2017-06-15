@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 
 /**
  * Created by matheuscatossi on 6/3/17.
- */
+ */    
 
 public class App extends Application {
     @Override
