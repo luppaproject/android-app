@@ -17,8 +17,6 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
  */
 
 public class IntroActivity extends AppIntro {
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +30,7 @@ public class IntroActivity extends AppIntro {
         addSlide(AppIntroFragment.newInstance(getString(R.string.intro_2_title), getString(R.string.intro_2_desc), R.drawable.people, getResources().getColor(R.color.introColor2)));
         addSlide(AppIntroFragment.newInstance(getString(R.string.intro_3_title), getString(R.string.intro_3_desc), R.drawable.logo, getResources().getColor(R.color.introColor3)));
 
-        // OPTIONAL METHODS
-        // Override bar/separator color.
-        //setBarColor(Color.parseColor("#3F51B5"));
-        //setSeparatorColor(Color.parseColor("#2196F3"));
-
-        // Hide Skip/Done button.
         showSkipButton(false);
-        //setProgressButtonEnabled(false);
-
     }
 
     @Override

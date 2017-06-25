@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
       }
 
     @Override
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         // Filters
-
         if (id == R.id.filter_1) {
             return true;
         } else if (id == R.id.filter_2) {
@@ -116,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
                         previousTotal = totalItemCount;
                     }
                 }
-                if (!loading && (totalItemCount - visibleItemCount)
-                        <= (firstVisibleItem + visibleThreshold)) {
+
+                if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
                     loading = true;
 
                     // get items for API (Endless)
@@ -138,15 +136,17 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         apiService = APIClient.getService().create(APIInterface.class);
-
         progress = ProgressDialog.show(MainActivity.this, "Carregando", "Buscando informações...", true);
-
         callSuspected = apiService.getAllSuspected(String.valueOf(Globals.nextPage), String.valueOf(Constants.TOTAL_BIDDING_FOR_PAGE));
-        
+
+        Log.i("Request in API", "" + callSuspected.request().url().toString());
+
         callSuspected.enqueue(new Callback<ListSuspected>() {
             @Override
             public void onResponse(Call<ListSuspected> call, Response<ListSuspected> response) {
                 if (response.raw().code() == 200) {
+
+                    Log.i("Return Request", "Success");
 
                     ListSuspected listSuspected = response.body();
 
@@ -160,16 +160,14 @@ public class MainActivity extends AppCompatActivity {
                     rankingCustomAdapter = new SuspectedCustomAdapter(MainActivity.this, suspecteds);
 
                     recyclerView.setAdapter(rankingCustomAdapter);
-
                     recyclerView.scrollToPosition(firstVisibleItem);
                     progress.dismiss();
-
                 }
             }
 
             @Override
             public void onFailure(Call<ListSuspected> call, Throwable t) {
-                Log.e("GETALLBIDDING", t.toString());
+                Log.e("ERROR in GetAllBidding", t.toString());
             }
         });
     }

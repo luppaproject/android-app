@@ -45,10 +45,9 @@ public class InformationSuspectedActivity extends AppCompatActivity {
     private DatabaseHandler db;
     private Button btn_vote;
     private Suspected suspected;
-
     private RecyclerView recyclerView;
     private ArrayList<InformationSuspected> informationSuspecteds;
-    ArrayList<Suspected> productSuspecteds;
+    private ArrayList<Suspected> productSuspecteds;
     private APIInterface apiService;
     private Call<InformationSuspected> callInformationSuspected;
     private InformationSuspected informationSuspected;
@@ -61,7 +60,6 @@ public class InformationSuspectedActivity extends AppCompatActivity {
     private TextView tv_entity;
 
     private Call<Voted> callVoted;
-
     private ProgressDialog progress;
 
     @Override
@@ -72,8 +70,6 @@ public class InformationSuspectedActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         progress = ProgressDialog.show(InformationSuspectedActivity.this, "Carregando", "Enviando informações", true);
-
-
         btn_vote = (Button) findViewById(R.id.btn_vote);
 
         Intent myIntent = getIntent();
@@ -202,7 +198,6 @@ public class InformationSuspectedActivity extends AppCompatActivity {
                         Log.e("MENSAGEM", t.toString());
                         progress.dismiss();
                     }
-
                 });
             }
         });

@@ -9,9 +9,6 @@ import android.preference.PreferenceManager;
  * Created by matheuscatossi on 6/3/17.
  */
 
-
-
-
 public class App extends Application {
     @Override
     public void onCreate() {
@@ -23,8 +20,7 @@ public class App extends Application {
             @Override
             public void run() {
                 //  Initialize SharedPreferences
-                SharedPreferences getPrefs = PreferenceManager
-                        .getDefaultSharedPreferences(getBaseContext());
+                SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
                 //  Create a new boolean and preference and set it to true
                 boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
@@ -51,6 +47,5 @@ public class App extends Application {
 
         // Start the thread
         t.start();
-
     }
 }
