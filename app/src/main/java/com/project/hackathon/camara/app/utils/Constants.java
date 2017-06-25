@@ -12,8 +12,9 @@ public class Constants {
 
     // Membros
     public static final String BASE_URL = "http://52.45.44.224/";
-    public static final String BIDDING_ALL = "bidding";
+    public static final String BIDDING_ALL = "bidding?";
     public static final String BIDDING_BY_ID = "bidding/{id}";
     public static final String BIDDING_VOTE = "bidding/{id}/vote";
 
+    public static final int TOTAL_BIDDING_FOR_PAGE = 20;
 }
